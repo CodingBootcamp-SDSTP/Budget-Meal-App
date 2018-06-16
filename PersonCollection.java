@@ -2,6 +2,15 @@ import java.util.ArrayList;
 
 public class PersonCollection 
 {
+	private static PersonCollection _instance = null;
+
+	public static PersonCollection instance(String loc , String ff) {
+		if(_instance == null) {
+			_instance = new PersonCollection(loc, ff); 
+		}
+		return(_instance);
+	}
+
 	ArrayList<Person> persons;
 
 	public PersonCollection() {

@@ -16,7 +16,7 @@ public class FoodPlace
 	private int rating;
 	private String comment;
 
-	public FoodPlace(String n, String a, String m, BigDecimal p) {
+	private FoodPlace(String n, String a, String m, BigDecimal p) {
 		name = m;
 		address = a;
 		cheapestMenu = m;

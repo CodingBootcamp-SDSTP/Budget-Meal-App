@@ -2,6 +2,15 @@ import java.util.ArrayList;
 
 public class FoodPlacesCollection 
 {
+	private static FoodPlacesCollection _instance = null;
+
+	public static FoodPlacesCollection instance(String loc , String ff) {
+		if(_instance == null) {
+			_instance = new FoodPlacesCollection(loc, ff); 
+		}
+		return(_instance);
+	}
+
 	ArrayList<FoodPlace> foodPlaces;
 
 	public FoodPlacesCollection() {

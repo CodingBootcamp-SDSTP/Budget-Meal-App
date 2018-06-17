@@ -32,4 +32,18 @@ public class PersonCollection
 	public Person getPersonByIndex(int i) {
 		return(persons.get(i));
 	}
+
+	public ArrayList<Person> search(String s) {
+		Person p = null;
+		ArrayList<Person> ap = new ArrayList<Person>();
+		String str = s.toLowerCase();
+		for(int i=0; i<getPersonCount(); i++) {
+			p = getPersonByIndex(i);
+			if(matches(p, str)) {
+				al.add(p);
+			}
+		}
+		return(ap);
+	}
+
 }

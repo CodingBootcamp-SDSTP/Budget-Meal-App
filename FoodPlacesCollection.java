@@ -4,16 +4,16 @@ public class FoodPlacesCollection
 {
 	private static FoodPlacesCollection _instance = null;
 
-	public static FoodPlacesCollection instance(String loc , String ff) {
+	public static FoodPlacesCollection instance() {
 		if(_instance == null) {
-			_instance = new FoodPlacesCollection(loc, ff); 
+			_instance = new FoodPlacesCollection(); 
 		}
 		return(_instance);
 	}
 
 	ArrayList<FoodPlace> foodPlaces;
 
-	public FoodPlacesCollection() {
+	private FoodPlacesCollection() {
 		foodPlaces = new ArrayList<FoodPlace>();
 	}
 

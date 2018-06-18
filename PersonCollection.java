@@ -4,9 +4,9 @@ public class PersonCollection
 {
 	private static PersonCollection _instance = null;
 
-	public static PersonCollection instance(String loc , String ff) {
+	public static PersonCollection instance() {
 		if(_instance == null) {
-			_instance = new PersonCollection(loc, ff); 
+			_instance = new PersonCollection(); 
 		}
 		return(_instance);
 	}
@@ -35,15 +35,24 @@ public class PersonCollection
 
 	public ArrayList<Person> search(String s) {
 		Person p = null;
-		ArrayList<Person> ap = new ArrayList<Person>();
+		ArrayList<Person> pc = new ArrayList<Person>();
 		String str = s.toLowerCase();
 		for(int i=0; i<getPersonCount(); i++) {
 			p = getPersonByIndex(i);
 			if(matches(p, str)) {
-				al.add(p);
+				pc.add(p);
 			}
 		}
-		return(ap);
+		return(pc);
 	}
 
+	public boolean matches(Person p, String str) {
+		String fname = a.getfirstName().toLowerCase();
+		String lname = p.getLastName().toLowerCase();
+		String fullName = fname + lname;
+		if(fullName.contains(str)) {
+			return(true);
+		}
+		return(false);
+	}
 }

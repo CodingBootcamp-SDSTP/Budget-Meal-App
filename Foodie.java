@@ -2,16 +2,23 @@ public class Foodie extends Person
 {
 	private static Foodie _instance = null;
 
-	public static Foodie instance(String loc , String ff) {
+	public static Foodie instance(String fname, String lname, int a, String un, String pw, String em, String loc , String ff) {
 		if(_instance == null) {
-			_instance = new Foodie(loc, ff); 
+			_instance = new Foodie(fname, lname, a, un, pw, em, loc, ff); 
 		}
 		return(_instance);
 	}
 	
 	private String favoriteFood;
 
-	private Foodie(String loc, String ff) {
+	private Foodie(String fname, String lname, int a, String un, String pw, String em, String loc, String ff) {
+		setFirstName(fname);
+		setLastName(lname);
+		setAge(a);
+		setUsername(un);
+		setPassword(pw);
+		setEmail(em);
+		setLocation(loc);
 		favoriteFood = ff;
 	}
 

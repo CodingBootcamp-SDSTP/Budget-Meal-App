@@ -13,8 +13,6 @@ public class FoodPlace
 	private String address;
 	private String cheapestMenu;
 	private BigDecimal cheapestMenuPrice;
-	private int rating;
-	private String comment;
 
 	private FoodPlace(String n, String a, String m, BigDecimal p) {
 		name = m;
@@ -55,24 +53,8 @@ public class FoodPlace
 		return(cheapestMenuPrice);
 	}
 
-	public void setRating(int r) {
-		rating = r;
-	}
-
-	public int getRating() {
-		return(rating);
-	}
-
-	public void setComment(String c) {
-		comment = c;
-	}
-
-	public String getComment() {
-		return(comment);
-	}
-
 	public String toString() {
 		return(" Food Place: " + name + "\nAddress: " + address + "\nCheapest Menu: " +
-		 cheapestMenu + "(" + lowestPrice + ")" + "\nRating: " + rating + " out of 5 stars" + "\nComment: " + comment);
+		 cheapestMenu + "(" + lowestPrice + ")");
 	}
 }

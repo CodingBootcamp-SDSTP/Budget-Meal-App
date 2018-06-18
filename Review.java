@@ -9,19 +9,21 @@ public class Review
 		return(_instance);
 	}
 
-	private String review;
+	private String reviewText;
 	private int rating;
-	private int reviewerid;
+	private int reviewerId;
+	private int foodPlaceId;
+	private String reviewDate;
 
 	private Review(String r) {
 		review = r;
 	}
 
-	public void setReview(String r) {
+	public void setReviewText(String r) {
 		review = r;
 	}
 
-	public String getReview() {
+	public String getReviewText() {
 		return(review);
 	}
 
@@ -39,5 +41,21 @@ public class Review
 
 	public int getReviewerId() {
 		return(reviewerid);
+	}
+
+	public void setFoodPlaceId(int fpid) {
+		foodPlaceId = fpid;
+	}
+
+	public int getFoodPlaceId() {
+		return(foodPlaceId);
+	}
+
+	public void setReviewDate(String date) {
+		reviewDate = date;
+	}
+
+	public String getReviewDate() {
+		return(reviewDate);
 	}
 }

@@ -33,11 +33,15 @@ public class FoodPlacesCollection
 		return(foodPlaces.get(i));
 	}
 
+	public int getFoodPlacesCount() {
+		return(foodPlaces.size());
+	}
+
 	public ArrayList<FoodPlace> search(String text) {
 		FoodPlace fp = null;
 		ArrayList<FoodPlace> fpc = new ArrayList<FoodPlace>();
 		String str = text.toLowerCase();
-		for(int i=0; i<getFoodPlaceCount(); i++) {
+		for(int i=0; i<getFoodPlacesCount(); i++) {
 			fp = getFoodPlaceByIndex(i);
 			if(matches(fp, str)) {
 				fpc.add(fp);
@@ -47,10 +51,9 @@ public class FoodPlacesCollection
 	}
 
 	public boolean matches(FoodPlace fp, String str) {
-		String loc = fp.getLocation().toLowerCase();
+		String loc = fp.getAddress().toLowerCase();
 		String fpname = fp.getName().toLowerCase();
-		String fave = fp.getFavoriteFood().toLowerCase();
-		if(loc.contains(str) || fpname.contains(str) || fave.contains(str)) {
+		if(loc.contains(str) || fpname.contains(str)) {
 			return(true);
 		}
 		return(false);

@@ -1,21 +1,14 @@
+import java.math.BigDecimal;
+
 public class FoodPlace
 {
-	private static FoodPlace _instance = null;
-
-	public static FoodPlace instance(String n, String a, String m, int p) {
-		if(_instance == null) {
-			_instance = new FoodPlace(n, a, m, p);
-		}
-		return(_instance);
-	}
-	
 	private String name;
 	private String address;
 	private String cheapestMenu;
 	private BigDecimal cheapestMenuPrice;
 
-	private FoodPlace(String n, String a, String m, BigDecimal p) {
-		name = m;
+	public FoodPlace(String n, String a, String m, BigDecimal p) {
+		name = n;
 		address = a;
 		cheapestMenu = m;
 		cheapestMenuPrice = p;
@@ -45,7 +38,7 @@ public class FoodPlace
 		return(cheapestMenu);
 	}
 
-	public void setCheapestMenuPrice(int p) {
+	public void setCheapestMenuPrice(BigDecimal p) {
 		cheapestMenuPrice = p;
 	}
 
@@ -55,6 +48,6 @@ public class FoodPlace
 
 	public String toString() {
 		return(" Food Place: " + name + "\nAddress: " + address + "\nCheapest Menu: " +
-		 cheapestMenu + "(" + lowestPrice + ")");
+		 cheapestMenu + "(" + cheapestMenuPrice + ")");
 	}
 }

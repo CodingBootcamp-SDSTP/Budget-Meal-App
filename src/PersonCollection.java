@@ -33,6 +33,10 @@ public class PersonCollection
 		return(persons.get(i));
 	}
 
+	public int getPersonCount() {
+		return(persons.size());
+	}
+
 	public ArrayList<Person> search(String s) {
 		Person p = null;
 		ArrayList<Person> pc = new ArrayList<Person>();
@@ -47,7 +51,7 @@ public class PersonCollection
 	}
 
 	public boolean matches(Person p, String str) {
-		String fname = a.getfirstName().toLowerCase();
+		String fname = p.getFirstName().toLowerCase();
 		String lname = p.getLastName().toLowerCase();
 		String fullName = fname + lname;
 		if(fullName.contains(str)) {

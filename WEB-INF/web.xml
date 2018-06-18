@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<web-app>
+	<display-name>Budget Meal</display-name>
+	<description>BudgetMealApp</description>
+	<servlet>
+		<servlet-name>AllFoodPlaces</servlet-name>
+		<servlet-class>AllFoodPlacesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AllFoodPlaces</servlet-name>
+		<url-pattern>/foodplaces</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AllPersons</servlet-name>
+		<servlet-class>AllPersonsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AllPersons</servlet-name>
+		<url-pattern>/persons</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AllReviews</servlet-name>
+		<servlet-class>AllReviewsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AllReviews</servlet-name>
+		<url-pattern>/reviews</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SearchFoodPlace</servlet-name>
+		<servlet-class>SearchFoodPlaceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchFoodPlace</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+</web-app>

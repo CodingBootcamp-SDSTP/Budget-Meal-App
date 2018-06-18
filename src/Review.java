@@ -1,30 +1,25 @@
 public class Review
 {
-	private static Review _instance = null;
-
-	public static Review instance(String c) {
-		if(_instance == null) {
-			_instance = new Reviews(c);
-		}
-		return(_instance);
-	}
-
 	private String reviewText;
 	private int rating;
 	private int reviewerId;
 	private int foodPlaceId;
 	private String reviewDate;
 
-	private Review(String r) {
-		review = r;
+	public Review(String rt, int r, int rid, int fpid, String rd) {
+		reviewText = rt;
+		rating = r;
+		reviewerId = rid;
+		foodPlaceId = fpid;
+		reviewDate = rd;
 	}
 
-	public void setReviewText(String r) {
-		review = r;
+	public void setReviewText(String rt) {
+		reviewText = rt;
 	}
 
 	public String getReviewText() {
-		return(review);
+		return(reviewText);
 	}
 
 	public void setRating(int r) {
@@ -36,11 +31,11 @@ public class Review
 	}
 
 	public void setReviewerId(int rv) {
-		reviewerid = rv;
+		reviewerId = rv;
 	}
 
 	public int getReviewerId() {
-		return(reviewerid);
+		return(reviewerId);
 	}
 
 	public void setFoodPlaceId(int fpid) {

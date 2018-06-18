@@ -1,10 +1,15 @@
-class FoodPlacesDatabase
-{
-	private static FoodPlacesDatabase _instance = null;
+import java.util.ArrayList;
+import java.io.*;
+import java.sql.*;
+import java.math.BigDecimal;
 
-	public FoodPlacesDatabase instance() {
+public class BudgetMealManagerDatabase
+{
+	private static BudgetMealManagerDatabase _instance = null;
+
+	public static BudgetMealManagerDatabase instance() {
 		if(_instance == null) {
-			_instance = new FoodPlacesDatabase();
+			_instance = new BudgetMealManagerDatabase();
 		}
 		return(_instance);
 	}
@@ -14,12 +19,13 @@ class FoodPlacesDatabase
 	private ReviewCollection reviews;
 	Connection conn = null;
 
-	private FoodPlacesDatabase() {
+	private BudgetMealManagerDatabase() {
 		foodPlaces = FoodPlacesCollection.instance();
-		persons = new PersonCollection();
+		persons = PersonCollection.instance();
+		reviews = new ReviewCollection();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/foodplacesdb?user=jnebab&password=foodie&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/budgetmeal?user=jcnebab&password=budgetmeal&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true");
 			readFromSQL(conn);
 		}
 		catch(Exception e) {
@@ -27,58 +33,70 @@ class FoodPlacesDatabase
 		}
 	}
 
-	public void addPerson(Person person) {
-		if(insertPersonToSQL) {
-			addPerson(person);
-		}
+	// public void addPerson(Person person) {
+	// 	if(insertPersonToSQL) {
+	// 		addPerson(person);
+	// 	}
+	// }
+
+	// public void addFoodPlace(FoodPlace foodPlace) {
+	// 	if(insertFoodPlaceToSQL) {
+	// 		addFoodPlace(FoodPlace);
+	// 	}
+	// }
+
+	// public void addReview(Review review) {
+	// 	if(insertReviewToSQL) {
+	// 		addReview(review);
+	// 	}
+	// }
+
+	public PersonCollection getPersonCollection() {
+		return(persons);
 	}
 
-	public void addFoodPlace(FoodPlace foodPlace) {
-		if(insertFoodPlaceToSQL) {
-			addFoodPlace(FoodPlace);
-		}
+	public FoodPlacesCollection getFoodPlacesCollection() {
+		return(foodPlaces);
 	}
 
-	public void addReview(Review review) {
-		if(insertReviewToSQL) {
-			addReview(review);
-		}
+	public ReviewCollection getReviewCollection() {
+		return(reviews);
 	}
 
-	public boolean insertPersonToSQL(Person person) {
-		return(null);
-	}
+	// public boolean insertPersonToSQL(Person person) {
+	// 	return(null);
+	// }
 
-	public boolean insertFoodPlaceToSQL(FoodPlace foodPlace) {
-		return(null);
-	}
+	// public boolean insertFoodPlaceToSQL(FoodPlace foodPlace) {
+	// 	return(null);
+	// }
 
-	public boolean insertReviewToSQL(Review review) {
-		return(null);
-	}
+	// public boolean insertReviewToSQL(Review review) {
+	// 	return(null);
+	// }
 
 	public boolean readFromSQL(Connection conn) {
-		PrepareStatement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.createStatement("SELECT * FROM persons_tbl");
+			stmt = conn.prepareStatement("SELECT * FROM persons_tbl");
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				String[] details = {
 					rs.getString("firstname"),
 					rs.getString("lastname"),
-					rs.getInt("age"),
+					rs.getString("age"),
 					rs.getString("username"),
 					rs.getString("password"),
 					rs.getString("email"),
 					rs.getString("location"),
 					rs.getString("favoritefood"),
 					rs.getString("establishmentname"),
-					rs.getString("type")
+					rs.getString("persontype")
 				};
 				createObject(details);
 			}
-			stmt = conn.createStatement("SELECT * FROM foodplaces_tbl");
+			stmt = conn.prepareStatement("SELECT * FROM foodplaces_tbl");
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				String[] details = {
@@ -90,15 +108,15 @@ class FoodPlacesDatabase
 				};
 				createObject(details);
 			}
-			stmt = conn.createStatement("SELECT * FROM reviews_tbl");
+			stmt = conn.prepareStatement("SELECT * FROM reviews_tbl");
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				String[] details = {
 					rs.getString("reviewtext"),
-					rs.getInt("reviewrating"),
-					rs.getInt("reviewerid"),
-					rs.getInt("foodplaceid"),
-					rs.getDate("reviewdate"),
+					rs.getString("reviewrating"),
+					rs.getString("reviewerid"),
+					rs.getString("foodplaceid"),
+					rs.getString("reviewdate"),
 					"review"
 				};
 				createObject(details);
@@ -116,21 +134,25 @@ class FoodPlacesDatabase
 	}
 
 	public void createObject(String... details) {
-		int len = details.length -1;
+		int len = details.length - 1;
 		String d = details[len];
 		switch(d) {
 			case "foodie":
-				Foodie f = Foodie.instance(details[0], details[1], Integer.parseInt(details[2]), details[3], details[4], details[5], details[6], details[7]);
+				Foodie f = new Foodie(details[0], details[1], Integer.parseInt(details[2]), details[3], details[4], details[5], details[6], details[7]);
 				persons.addPerson(f);
+				break;
 			case "manager":
-				Manager m = Manager.instance(details[0], details[1], Integer.parseInt(details[2]), details[3], details[4], details[5], details[6], details[8]);
+				Manager m = new Manager(details[0], details[1], Integer.parseInt(details[2]), details[3], details[4], details[5], details[6], details[8]);
 				persons.addPerson(m);
+				break;
 			case "foodplace":
-				FoodPlace fp = FoodPlace.instance(details[0], details[1], (details[2]), Integer.parseInt(details[3]));
+				FoodPlace fp = new FoodPlace(details[0], details[1], (details[2]), new BigDecimal(details[3]));
 				foodPlaces.addFoodPlace(fp);
+				break;
 			case "review":
-				Review r = Review.instance(details[0], details[1], details[2], Integer.parseInt(details[3]));
-				reviews.addReview(b);
+				Review r = new Review(details[0], Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3]), details[4]);
+				reviews.addReview(r);
+				break;
 		}
 	}
 
@@ -147,7 +169,7 @@ class FoodPlacesDatabase
 
 	public String getCollectionContent() {
 		ArrayList<Person> p = persons.getAllPersons();
-		ArrayList<FoodPlace> fp = foodPersons.getAllFoodPlaces();
+		ArrayList<FoodPlace> fp = foodPlaces.getAllFoodPlaces();
 		ArrayList<Review> r= reviews.getAllReviews();
 		StringBuffer sb = new StringBuffer("");
 		for(int i=0; i<p.size(); i++) {
@@ -158,10 +180,10 @@ class FoodPlacesDatabase
 			FoodPlace foodPlace = fp.get(i);
 			sb.append(foodPlace.toString() + "\n");
 		}
-		for(int i=0; i<a.size(); i++) {
+		for(int i=0; i<r.size(); i++) {
 			Review review = r.get(i);
 			sb.append(review.toString());
-			if(i < a.size()-1) {
+			if(i < r.size()-1) {
 				sb.append("\n");
 			}
 		}

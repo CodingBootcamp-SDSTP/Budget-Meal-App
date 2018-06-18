@@ -2,19 +2,19 @@ import java.util.ArrayList;
 
 public class ReviewCollection 
 {
-	private static ReviewCollection _instance = null;
+	// private static ReviewCollection _instance = null;
 
-	public static ReviewCollection instance() {
-		if(_instance == null) {
-			_instance = new ReviewCollection(); 
-		}
-		return(_instance);
-	}
+	// public static ReviewCollection instance() {
+	// 	if(_instance == null) {
+	// 		_instance = new ReviewCollection(); 
+	// 	}
+	// 	return(_instance);
+	// }
 
 	ArrayList<Review> reviews;
 
-	private ReviewCollection() {
-		Review = new ArrayList<Review>();
+	public ReviewCollection() {
+		reviews = new ArrayList<Review>();
 	}
 
 	public void addReview(Review review) {
@@ -33,6 +33,10 @@ public class ReviewCollection
 		return(reviews.get(i));
 	}
 
+	public int getReviewCount() {
+		return(reviews.size());
+	}
+
 	public ArrayList<Review> search(String text) {
 		Review r = null;
 		ArrayList<Review> rc = new ArrayList<Review>();
@@ -48,7 +52,7 @@ public class ReviewCollection
 
 	public boolean matches(Review r, String text) {
 		String reviewText = r.getReviewText().toLowerCase();
-		if(reviewText.contains(str)) {
+		if(reviewText.contains(text)) {
 			return(true);
 		}
 		return(false);

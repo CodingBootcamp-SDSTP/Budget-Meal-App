@@ -16,11 +16,11 @@ class Person
 		return(firstName);
 	}
 
-	public void setlastName(String ln) {
-		lastName = fn;
+	public void setLastName(String ln) {
+		lastName = ln;
 	}
 
-	public String getlastName() {
+	public String getLastName() {
 		return(lastName);
 	}
 

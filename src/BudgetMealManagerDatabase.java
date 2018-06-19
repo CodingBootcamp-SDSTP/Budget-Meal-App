@@ -39,18 +39,6 @@ public class BudgetMealManagerDatabase
 		}
 	}
 
-	// public void addFoodPlace(FoodPlace foodPlace) {
-	// 	if(insertFoodPlaceToSQL) {
-	// 		addFoodPlace(FoodPlace);
-	// 	}
-	// }
-
-	// public void addReview(Review review) {
-	// 	if(insertReviewToSQL) {
-	// 		addReview(review);
-	// 	}
-	// }
-
 	public PersonCollection getPersonCollection() {
 		return(persons);
 	}
@@ -104,14 +92,6 @@ public class BudgetMealManagerDatabase
 		}
 		return(true);
 	}
-
-	// public boolean insertFoodPlaceToSQL(FoodPlace foodPlace) {
-	// 	return(null);
-	// }
-
-	// public boolean insertReviewToSQL(Review review) {
-	// 	return(null);
-	// }
 
 	public boolean readFromSQL(Connection conn) {
 		PreparedStatement stmt = null;

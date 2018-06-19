@@ -14,8 +14,6 @@ public class AddPersonServlet extends HttpServlet
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-			res.setContentType("application/x-www-form-urlencoded");
-			PrintWriter out = res.getWriter();
 			
 		}
 	public void destroy() {

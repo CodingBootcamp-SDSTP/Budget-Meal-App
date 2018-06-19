@@ -42,17 +42,17 @@ window.onload = () => {
 		rq.send("firstname="+fname+"&lastname="+lname+"&age="+age+"&username="+un+"&password="+pw+"&email="+
 			email+"&location="+loc+"&food="+food+"&place="+en+"&usertype="+user);
 	}
-	// document.getElementById("login-btn").onclick = () => {
-	// 	let rq = new XMLHttpRequest();
-	// 	rq.onreadystatechange = () => {
-	// 		if(rq.readyState == 4) {
-	// 			alert("Successful login");
-	// 		}
-	// 	};
-	// 	rq.open("GET", "/budgetmealapp/login?username="+username+"&password="+password+"&usertype="+type, true);
-	// 	rq.setRequestHeader("Content-Type", "text/xml");
-	// 	rq.send();
-	// }
+	document.getElementById("login-btn").onclick = () => {
+		let rq = new XMLHttpRequest();
+		rq.onreadystatechange = () => {
+			if(rq.readyState == 4) {
+				alert("Successful login");
+			}
+		};
+		rq.open("GET", "/budgetmealapp/login?username="+username+"&password="+password+"&usertype="+type, true);
+		rq.setRequestHeader("Content-Type", "text/xml");
+		rq.send();
+	}
 	document.getElementById("signin").onclick = () => {
 			search.style.display = "none";
 			create.style.display = "none";

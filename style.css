@@ -1,0 +1,74 @@
+body {
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	text-align: center;
+	background: #ecf0f1;
+}
+
+nav {
+	display: flex;
+	justify-content: flex-end;
+	height: 60px;
+	align-items: center;
+}
+
+nav div + div {
+	margin-right: 30px;
+	padding-left: 20px;
+}
+
+#signout {
+	display: none;
+}
+
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.search {
+	max-width: 50%;
+	margin: 0 auto;
+	/* display: flex;
+	flex-direction: column; */
+	/* border: 1px solid #ccc; */
+	/* padding: 0px 30px 50px; */
+	/* background: rgba(255, 255, 255, 1);
+	box-shadow: 3px 3px 10px 2px #333; */
+	margin-top: 100px;
+}
+
+.search input, select {
+	margin-bottom: 10px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	padding: 10px 0px 8px 10px;
+	margin: 5px 1px 3px 0px;
+	border: 1px solid #ccc;
+}
+
+.search input:focus {
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	padding: 10px 0px 8px 10px;
+	margin: 5px 1px 3px 0px;
+	border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.search button {
+	padding: 8px 15px;
+	margin-top: 10px;
+}
+
+.search button:hover {
+	cursor: pointer;
+}
+
+#foodplaces, #loginform, #accountform{
+	display: none;
+}
+

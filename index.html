@@ -4,11 +4,53 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Budget Meal</title>
-	<script src="main.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script src="./functionality.js"></script>
 </head>
 <body>
-	<h1>Welcome to Budget Meal App</h1>
-	<p>Budget Meal is a web-application built to help food enthusiasts who are on a tight budget. This application will provide them a list of nearby food places or carinderias that can serve them great, delicious meals and at the same time, it will still suit well to their existing budget for food (e.g., One user will input an amount of 100 pesos after a few seconds, a list of food places that serve meals/foods that are priced not above 100 pesos will appear.) </p>
-	<p>In addition, food chain/places owners/managers can register in this website for them to include their places to the database and get added to the list of results when a user make the next query.</p>
+	<header>
+		<nav>
+			<div><a href="#" id="how">How It Works?</a></div>
+			<div><a href="#" id="signin">Sign In</a></div>
+			<div><a href="#" id="create">Create Account</a></div>
+			<div><a href="#" id="post">Post Your Food Place</a></div>
+			<div><a href="#" id="signout">Sign Out</a></div>
+		</nav>
+	</header>
+	<main>
+		<div class="search" id="searchform">
+			<h1>Search Budget Meal</h1>
+			<input type="text" placeholder="Amount(e.g., 100)" id="budget">
+			<input type="text" placeholder="Food(e.g., pork)" id="favefood">
+			<input type="text" placeholder="Location(e.g., Sta Rosa)" id="location">
+			<button type="submit" id="search-btn">Search</button>
+		</div>
+		<div id="foodplaces"></div>
+		<div class="search" id="loginform">
+				<h1>Sign in to Budget Meal</h1>
+				<input type="text" placeholder="Username" id="username">
+				<input type="text" placeholder="Password" id="password">
+				<button type="submit" id="login-btn">Login</button>
+				<button type="submit" id="create-btn">Create Account</button>
+		</div>
+		<div class="search" id="accountform">
+				<h1>Create Account</h1>
+				<select id="usertype">
+					<option selected disabled value="">Choose here</option>
+					<option value="foodie">Foodie</option>
+					<option value="manager">Manager</option>
+				</select>
+				<input type="text" placeholder="First Name" id="fname">
+				<input type="text" placeholder="Last Name" id="lname">
+				<input type="text" placeholder="Age" id="age">
+				<input type="text" placeholder="Username" id="user">
+				<input type="text" placeholder="Password" id="pw">
+				<input type="text" placeholder="Email" id="email">
+				<input type="text" placeholder="Location" id="loc">
+				<input type="text" placeholder="Favorite Food" id="food">
+				<input type="text" placeholder="Establishment" id="place">
+				<button type="submit" id="account-btn">Create Account</button>
+		</div>
+	</main>
 </body>
 </html>

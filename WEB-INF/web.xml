@@ -34,4 +34,20 @@
 		<servlet-name>SearchFoodPlace</servlet-name>
 		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddPerson</servlet-name>
+		<servlet-class>AddPersonServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPerson</servlet-name>
+		<url-pattern>/addperson</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
 </web-app>

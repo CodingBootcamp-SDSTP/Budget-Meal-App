@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 public class FoodPlacesCollection 
 {
@@ -37,23 +38,25 @@ public class FoodPlacesCollection
 		return(foodPlaces.size());
 	}
 
-	public ArrayList<FoodPlace> search(String text) {
+	public ArrayList<FoodPlace> search(BigDecimal amount, String ff, String loc) {
 		FoodPlace fp = null;
 		ArrayList<FoodPlace> fpc = new ArrayList<FoodPlace>();
-		String str = text.toLowerCase();
+		String fave = ff.toLowerCase();
+		String l = loc.toLowerCase();
 		for(int i=0; i<getFoodPlacesCount(); i++) {
 			fp = getFoodPlaceByIndex(i);
-			if(matches(fp, str)) {
+			if(matches(fp, amount, fave, l)) {
 				fpc.add(fp);
 			}
 		}
 		return(fpc);
 	}
 
-	public boolean matches(FoodPlace fp, String str) {
-		String loc = fp.getAddress().toLowerCase();
-		String fpname = fp.getName().toLowerCase();
-		if(loc.contains(str) || fpname.contains(str)) {
+	public boolean matches(FoodPlace fp, BigDecimal amount, String ff, String loc) {
+		BigDecimal a = fp.getCheapestMenuPrice();
+		String l = fp.getAddress().toLowerCase();
+		String fave = fp.getCheapestMenu().toLowerCase();
+		if((a.compareTo(amount)<=0 && l.contains(loc)) && (ff == "" || fave.contains(ff))) {
 			return(true);
 		}
 		return(false);

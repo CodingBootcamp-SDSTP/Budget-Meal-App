@@ -33,11 +33,11 @@ public class BudgetMealManagerDatabase
 		}
 	}
 
-	// public void addPerson(Person person) {
-	// 	if(insertPersonToSQL) {
-	// 		addPerson(person);
-	// 	}
-	// }
+	public void addPerson(Person person) {
+		if(insertPersonToSQL(person)) {
+			addPerson(person);
+		}
+	}
 
 	// public void addFoodPlace(FoodPlace foodPlace) {
 	// 	if(insertFoodPlaceToSQL) {
@@ -63,9 +63,47 @@ public class BudgetMealManagerDatabase
 		return(reviews);
 	}
 
-	// public boolean insertPersonToSQL(Person person) {
-	// 	return(null);
-	// }
+	public boolean insertPersonToSQL(Person person) {
+		PreparedStatement stmt = null;
+		try {
+			if(person instanceof Foodie) {
+				Foodie f = (Foodie)person;
+				stmt = conn.prepareStatement("INSERT INTO persons_tbl ( firstname, lastname, age, username, password, email, location, food, persontype ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				stmt.setString(1, f.getFirstName());
+				stmt.setString(2, f.getLastName());
+				stmt.setInt(3, f.getAge());
+				stmt.setString(4, f.getUsername());
+				stmt.setString(5, f.getPassword());
+				stmt.setString(6, f.getEmail());
+				stmt.setString(7, f.getLocation());
+				stmt.setString(8, f.getFavoriteFood());
+				stmt.setString(9, "foodie");
+				stmt.executeUpdate();
+			}
+			else if(person instanceof Manager) {
+				Manager m = (Manager)person;
+				stmt = conn.prepareStatement("INSERT INTO persons_tbl ( firstname, lastname, age, username, password, email, location, establishmentname, persontype ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				stmt.setString(1, m.getFirstName());
+				stmt.setString(2, m.getLastName());
+				stmt.setInt(3, m.getAge());
+				stmt.setString(4, m.getUsername());
+				stmt.setString(5, m.getPassword());
+				stmt.setString(6, m.getEmail());
+				stmt.setString(7, m.getLocation());
+				stmt.setString(8, m.getEstablishmentName());
+				stmt.setString(9, "manager");
+				stmt.executeUpdate();
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
 
 	// public boolean insertFoodPlaceToSQL(FoodPlace foodPlace) {
 	// 	return(null);
@@ -156,11 +194,11 @@ public class BudgetMealManagerDatabase
 		}
 	}
 
-	public ArrayList<Object> search(String s) {
+	public ArrayList<Object> search(BigDecimal a, String f, String l, String t) {
 		ArrayList<Object> obj = new ArrayList<Object>();
-		ArrayList<Person> p = persons.search(s);
-		ArrayList<FoodPlace> fp = foodPlaces.search(s);
-		ArrayList<Review> r = reviews.search(s);
+		ArrayList<Person> p = persons.search(t);
+		ArrayList<FoodPlace> fp = foodPlaces.search(a, f, l);
+		ArrayList<Review> r = reviews.search(t);
 		obj.addAll(p);
 		obj.addAll(fp);
 		obj.addAll(r);

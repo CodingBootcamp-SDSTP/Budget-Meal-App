@@ -1,5 +1,7 @@
 function setEvents() {
 	let rq = new XMLHttpRequest();
+	let places = document.getElementById("foodplaces");
+	let searchform = document.getElementById("searchform");
 	document.body.addEventListener("click", e => {
 		if(e.target && e.target.matches("button#search-btn")) {
 			let budget = document.getElementById("budget").value;
@@ -7,18 +9,21 @@ function setEvents() {
 			let loc = document.getElementById("location").value;
 				rq.onreadystatechange = () => {
 				if(rq.readyState == 4) {
-					let places = document.getElementById("foodplaces");
-					document.getElementById("searchform").style.display = "none";
+					searchform.style.display = "none";
 					places.style.display = "block";
 					let foodPlace = rq.responseText;
 					let parser = new DOMParser();
 					let xmlDoc = parser.parseFromString(foodPlace, "text/xml");
-					let photo = xmlDoc.getElementsByTagName("foodplace")[0].childNodes[0].textContent;
-					let name = xmlDoc.getElementsByTagName("foodplace")[0].childNodes[1].textContent;
-					let add = xmlDoc.getElementsByTagName("foodplace")[0].childNodes[2].textContent;
-					let menu = xmlDoc.getElementsByTagName("foodplace")[0].childNodes[3].textContent;
-					let price = xmlDoc.getElementsByTagName("foodplace")[0].childNodes[4].textContent;
-					places.innerHTML = "<div id='fp'><div><img src=\""+photo+"\" alt=\""+name+" image\" width='300px' height='300px' id='fpphoto'></div><p>Name: " + name + "</p><p>Address: "+add+"</p><p> Menu: "+menu+"</p><p>Price: "+price+"</p></div>";
+					let foodPlaceTag = xmlDoc.getElementsByTagName("foodplace");
+					places.innerHTML = "";
+					for (let i=0; i<foodPlaceTag.length; i++) {
+						let photo = foodPlaceTag[i].childNodes[0].textContent;
+						let name = foodPlaceTag[i].childNodes[1].textContent;
+						let add = foodPlaceTag[i].childNodes[2].textContent;
+						let menu = foodPlaceTag[i].childNodes[3].textContent;
+						let price = foodPlaceTag[i].childNodes[4].textContent;
+						places.innerHTML += "<div class='fp'><div><img src=\""+photo+"\" alt=\""+name+" image\" width='300px' height='300px' id='fpphoto'></div><p>Name: " + name + "</p><p>Address: "+add+"</p><p> Menu: "+menu+"</p><p>Price: "+price+"</p><button id='review-btn'>Write a review</button></div>";
+					}
 				}
 			};
 			rq.open("GET", "/budgetmealapp/search?amount="+budget+"&food="+food+"&location="+loc, true);
@@ -61,10 +66,15 @@ function setEvents() {
 			rq.send("firstname="+fname+"&lastname="+lname+"&age="+age+"&username="+un+"&password="+pw+"&email="+
 				email+"&location="+loc+"&food="+food+"&place="+en+"&usertype="+user);
 		}
+		else if(e.target && e.target.matches("button#login")) {
+			console.log("login successful");
+		}
+		else if(e.target && e.target.matches("button#review-btn")) {
+			popup1();
+		}
 	});
 }
 
 window.onload = () => {
 	setEvents();
 }
-

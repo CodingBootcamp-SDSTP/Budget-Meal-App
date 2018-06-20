@@ -46,7 +46,6 @@ header a {
 
 nav {
 	display: flex;
-	/* justify-content: flex-end; */
 	align-items: center;
 	margin-right: 60px;
 	text-transform: uppercase;
@@ -59,6 +58,13 @@ nav {
 }
 nav div + div {
 	padding-left: 30px;
+}
+
+.is-account-exist {
+	color:#fff;
+	text-transform: capitalize;
+	position: relative;
+	left: 20px;
 }
 
 .postfood {
@@ -184,12 +190,13 @@ footer {
 	display: none;
 }
 
-#fp {
+.fp {
 	background: rgba(255, 0, 0, 0.5);
 	padding: 30px 50px;
 	box-shadow: 0 3px 10px #000;
 	border: 3px solid #fff;
 	border-radius: 3px;
 	color: #FFFF66;
+	margin-top: 100px;
 }
 

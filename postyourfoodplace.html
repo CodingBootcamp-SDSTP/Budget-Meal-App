@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Budget Meal</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato|Shrikhand" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script src="./functionality.js"></script>
+</head>
+<body>
+	<header>
+		<div class="brand"><a href="/budgetmealapp">Budget Meal</a></div>
+		<nav>
+			<div><a href="/budgetmealapp/howitworks.html" class="howitworks" id="how">How It Works</a></div>
+			<div><a href="/budgetmealapp/login.html" class="signin" id="signin">Sign In</a></div>
+			<div><a href="/budgetmealapp/createaccount.html" class="createaccount" id="create">Create Account</a></div>
+			<div><a href="/budgetmealapp/postyourfoodplace.html" class="postfood" id="post">Post A Food Place</a></div>
+			<div><a href="#" id="signout">Sign Out</a></div>
+		</nav>
+	</header>
+	<main>
+			<div class="search" id="postfoodplaceform">
+					<div>
+						<h1>Post Your Food Place</h1>
+						<input type="file" id="fpphoto">
+						<input type="text" placeholder="Name" id="fpname">
+						<input type="text" placeholder="Address" id="fpaddres">
+						<input type="text" placeholder="Your Cheapest Menu" id="fpmenu">
+						<input type="text" placeholder="Your Cheapest Menu Price" id="fpprice">
+						<button type="submit" id="post-btn">Add My Food Place</button>
+						<button type="submit" id="cancel-btn">I Change My Mind</button>
+					</div>
+			</div>
+	</main>
+	<footer>
+		<p>&copy Budget Meal 2018 | All rights reserved.</p>
+	</footer>
+</body>
+</html>

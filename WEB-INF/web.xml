@@ -43,6 +43,22 @@
 		<url-pattern>/addperson</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>AddFoodPlace</servlet-name>
+		<servlet-class>AddFoodPlaceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddFoodPlace</servlet-name>
+		<url-pattern>/addfoodplace</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddReview</servlet-name>
+		<servlet-class>AddReviewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddReview</servlet-name>
+		<url-pattern>/addreview</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>Login</servlet-name>
 		<servlet-class>LoginServlet</servlet-class>
 	</servlet>

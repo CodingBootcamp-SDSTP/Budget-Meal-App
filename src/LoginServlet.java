@@ -5,7 +5,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 
-public class AddPersonServlet extends HttpServlet
+public class LoginServlet extends HttpServlet
 {
 	BudgetMealManagerDatabase bmmd;
 

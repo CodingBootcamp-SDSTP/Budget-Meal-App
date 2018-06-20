@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.io.*;
 import java.sql.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class BudgetMealManagerDatabase
 {
@@ -22,7 +25,7 @@ public class BudgetMealManagerDatabase
 	private BudgetMealManagerDatabase() {
 		foodPlaces = FoodPlacesCollection.instance();
 		persons = PersonCollection.instance();
-		reviews = new ReviewCollection();
+		reviews = ReviewCollection.instance();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/budgetmeal?user=jcnebab&password=budgetmeal&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true");
@@ -36,6 +39,18 @@ public class BudgetMealManagerDatabase
 	public void addPerson(Person person) {
 		if(insertPersonToSQL(person)) {
 			addPerson(person);
+		}
+	}
+
+	public void addFoodPlace(FoodPlace foodplace) {
+		if(insertFoodPlaceToSQL(foodplace)) {
+			addFoodPlace(foodplace);
+		}
+	}
+
+	public void addReview(Review review) {
+		if(insertReviewToSQL(review)) {
+			addReview(review);
 		}
 	}
 
@@ -93,6 +108,47 @@ public class BudgetMealManagerDatabase
 		return(true);
 	}
 
+	public boolean insertFoodPlaceToSQL(FoodPlace foodplace) {
+		PreparedStatement stmt = null;
+		try {
+				stmt = conn.prepareStatement("INSERT INTO foodplaces_tbl ( fpname, fplocation, fpmenuname, fpmenuprice ,fpphoto) VALUES ( ?, ?, ?, ?)");
+				stmt.setString(1, foodplace.getName());
+				stmt.setString(2, foodplace.getAddress());
+				stmt.setString(3, foodplace.getCheapestMenu());
+				stmt.setInt(4,foodplace.getCheapestMenuPrice().intValue());
+				stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+
+	public boolean insertReviewToSQL(Review review) {
+		PreparedStatement stmt = null;
+		try {
+				stmt = conn.prepareStatement("INSERT INTO reviews_tbl ( reviewtext, reviewrating, reviewerid, foodplaceid, reviewdate) VALUES ( ?, ?, ?, ?, NOW())");
+				stmt.setString(1, review.getReviewText());
+				stmt.setInt(2, review.getRating());
+				stmt.setInt(3, review.getReviewerId());
+				stmt.setInt(4, review.getFoodPlaceId());
+				// stmt.setString(5, review.getReviewDate());
+				stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+
 	public boolean readFromSQL(Connection conn) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -122,6 +178,7 @@ public class BudgetMealManagerDatabase
 					rs.getString("fplocation"),
 					rs.getString("fpmenuname"),
 					rs.getString("fpmenuprice"),
+					rs.getString("fpphoto"),
 					"foodplace"
 				};
 				createObject(details);
@@ -164,11 +221,11 @@ public class BudgetMealManagerDatabase
 				persons.addPerson(m);
 				break;
 			case "foodplace":
-				FoodPlace fp = new FoodPlace(details[0], details[1], (details[2]), new BigDecimal(details[3]));
+				FoodPlace fp = new FoodPlace(details[0], details[1], (details[2]), new BigDecimal(details[3]), details[4]);
 				foodPlaces.addFoodPlace(fp);
 				break;
 			case "review":
-				Review r = new Review(details[0], Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3]), details[4]);
+				Review r = new Review(details[0], Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3]), (details[4]));
 				reviews.addReview(r);
 				break;
 		}

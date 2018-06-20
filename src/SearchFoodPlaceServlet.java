@@ -19,7 +19,6 @@ public class SearchFoodPlaceServlet extends HttpServlet
 		res.setContentType("text/xml");
 		PrintWriter out = res.getWriter();
 		sb = new StringBuffer("<FoodPlaces>");
-		System.out.println(req.getQueryString());
 		String[] query = req.getQueryString().split("&");
 		String[] amount = query[0].split("=");
 		String[] ff = query[1].split("=");
@@ -32,7 +31,8 @@ public class SearchFoodPlaceServlet extends HttpServlet
 					sb.append("<foodplace><name>" + fp.getName() + "</name>");
 					sb.append("<address>" + fp.getAddress() + "</address>");
 					sb.append("<menu>" + fp.getCheapestMenu() + "</menu>");
-					sb.append("<price>" + fp.getCheapestMenuPrice() + "</price></foodplace>");
+					sb.append("<price>" + fp.getCheapestMenuPrice() + "</price>");
+					sb.append("<photo>" + fp.getPhoto() + "<photo</foodplace>");
 				}
 			}
 			sb.append("</FoodPlaces>");

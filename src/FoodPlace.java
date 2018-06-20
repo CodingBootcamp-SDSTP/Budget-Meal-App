@@ -6,12 +6,14 @@ public class FoodPlace
 	private String address;
 	private String cheapestMenu;
 	private BigDecimal cheapestMenuPrice;
+	private String photo;
 
-	public FoodPlace(String n, String a, String m, BigDecimal p) {
+	public FoodPlace(String n, String a, String m, BigDecimal p, String ph) {
 		name = n;
 		address = a;
 		cheapestMenu = m;
 		cheapestMenuPrice = p;
+		photo = ph;
 	}
 
 	public void setName(String n) {
@@ -44,6 +46,14 @@ public class FoodPlace
 
 	public BigDecimal getCheapestMenuPrice() {
 		return(cheapestMenuPrice);
+	}
+	
+	public void setPhoto(String ph) {
+		photo = ph;
+	}
+
+	public String getPhoto() {
+		return(photo);
 	}
 
 	public String toString() {

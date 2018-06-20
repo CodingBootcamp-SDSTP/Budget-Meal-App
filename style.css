@@ -1,21 +1,82 @@
+html { 	height: 100%; }
+
 body {
 	margin: 0 auto;
 	padding: 0;
 	box-sizing: border-box;
-	text-align: center;
-	background: #ecf0f1;
+	text-align: center;	
+	height: 100%;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	background: url("./src/img/meals.jpg") no-repeat;
+	background-size: cover;
+	color: #ff0000;
+}
+
+a:hover,
+button:hover {
+	cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+	color: #c0392b;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	height: 75px;
+	justify-content: space-between;
+	box-shadow: 0 5px 10px 0 #000;
+	background: #FF0000;
+	position: fixed;
+	width: 100%;
+}
+
+header .brand {
+	font-family: 'Shrikhand', cursive;
+	font-size: 1.75em;
+	text-decoration : underline wavy #FFFF66;
+}
+
+header a {
+	color: #FFFF66;
+	text-decoration: none;
 }
 
 nav {
 	display: flex;
-	justify-content: flex-end;
-	height: 60px;
+	/* justify-content: flex-end; */
 	align-items: center;
+	margin-right: 60px;
+	text-transform: uppercase;
+	font-size: 0.85em;
+	letter-spacing: 0.5px;
 }
 
+.brand {
+	margin-left: 60px;
+}
 nav div + div {
-	margin-right: 30px;
-	padding-left: 20px;
+	padding-left: 30px;
+}
+
+.postfood {
+	background: #fff;
+	color: #FF0000;
+	padding: 8px 15px;
+	box-shadow: 0 0 20px 0  #c0392b;
+	border-radius: 2px;
+	text-transform: capitalize;
+}
+
+nav a:hover {
+	color: #fff;
+}
+
+.postfood:hover {
+	background: #FFFF66;
+	color: #ff0000;
 }
 
 #signout {
@@ -26,6 +87,61 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
+}
+
+.landingpage {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.landingpage input,
+.landingpage button {
+	outline: none;
+	border: 1px solid #ff0000;
+	padding: 15px 30px;
+}
+
+.landingpage input {
+	width: 250px;
+	color: #c0392b;
+}
+
+.landingpage #budget {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.landingpage #food {
+	position: relative;
+	right: 10px;
+}
+
+.landingpage #location {
+	position: relative;
+	right: 20px;
+}
+
+.landingpage button {
+	background: #ff0000;
+	color: #FFFF66;
+	position: relative;
+	right: 30px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	height: 50px;
+}
+
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 65px;
+	background: #ff0000;
+	color: #FFFF66;
 }
 .search {
 	max-width: 50%;
@@ -64,7 +180,16 @@ main {
 	cursor: pointer;
 }
 
-#foodplaces, #loginform, #accountform{
+#foodplaces {
 	display: none;
+}
+
+#fp {
+	background: rgba(255, 0, 0, 0.5);
+	padding: 30px 50px;
+	box-shadow: 0 3px 10px #000;
+	border: 3px solid #fff;
+	border-radius: 3px;
+	color: #FFFF66;
 }
 

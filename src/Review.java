@@ -1,3 +1,5 @@
+import java.sql.Date;
+
 public class Review
 {
 	private String reviewText;
@@ -6,12 +8,12 @@ public class Review
 	private int foodPlaceId;
 	private String reviewDate;
 
-	public Review(String rt, int r, int rid, int fpid, String rd) {
+	public Review(String rt, int r, int rid, int fpid, String d) {
 		reviewText = rt;
 		rating = r;
 		reviewerId = rid;
 		foodPlaceId = fpid;
-		reviewDate = rd;
+		reviewDate = d;
 	}
 
 	public void setReviewText(String rt) {

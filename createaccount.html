@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Budget Meal</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script src="./functionality.js"></script>
+</head>
+<body>
+	<header>
+			<div class="brand"><a href="/budgetmealapp">Budget Meal</a></div>
+			<nav>
+				<div><a href="/budgetmealapp/howitworks.html" class="howitworks" id="how">How It Works</a></div>
+				<div><a href="/budgetmealapp/login.html" class="signin" id="signin">Sign In</a></div>
+				<div><a href="/budgetmealapp/createaccount.html" class="createaccount" id="create">Create Account</a></div>
+				<div><a href="/budgetmealapp/postyourfoodplace.html" class="postfood" id="post">Post A Food Place</a></div>
+				<div><a href="#" id="signout">Sign Out</a></div>
+			</nav>
+	</header>
+	<main>
+		<div class="search" id="accountform">
+				<h1>Create Account</h1>
+				<select id="usertype">
+					<option selected disabled value="">Choose here</option>
+					<option value="foodie">Foodie</option>
+					<option value="manager">Manager</option>
+				</select>
+				<input type="text" placeholder="First Name" id="fname">
+				<input type="text" placeholder="Last Name" id="lname">
+				<input type="text" placeholder="Age" id="age">
+				<input type="text" placeholder="Username" id="user">
+				<input type="text" placeholder="Password" id="pw">
+				<input type="text" placeholder="Email" id="email">
+				<input type="text" placeholder="Location" id="loc">
+				<input type="text" placeholder="Favorite Food" id="food">
+				<input type="text" placeholder="Establishment" id="place">
+				<button type="submit" id="account-btn">Create Account</button>
+		</div>
+	</main>
+	<footer>
+		<p>&copy Budget Meal 2018 | All rights reserved.</p>
+	</footer>
+</body>
+</html>

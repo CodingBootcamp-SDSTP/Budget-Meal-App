@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class ReviewCollection 
 {
-	// private static ReviewCollection _instance = null;
+	private static ReviewCollection _instance = null;
 
-	// public static ReviewCollection instance() {
-	// 	if(_instance == null) {
-	// 		_instance = new ReviewCollection(); 
-	// 	}
-	// 	return(_instance);
-	// }
+	public static ReviewCollection instance() {
+		if(_instance == null) {
+			_instance = new ReviewCollection(); 
+		}
+		return(_instance);
+	}
 
 	ArrayList<Review> reviews;
 

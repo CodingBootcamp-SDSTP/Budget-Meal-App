@@ -18,15 +18,11 @@ public class AddReviewServlet extends HttpServlet
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			res.setContentType("application/x-www-form-urlencoded");
 			PrintWriter out = res.getWriter();
-			// Date date = new Date();
-			// Timestamp t = new Timestamp(date.getTime());
-			// String d = t.toString();
 			String text = req.getParameter("text");
 			String rating = req.getParameter("rating");
 			String rid = req.getParameter("reviewer");
 			String fpid = req.getParameter("foodplace");
-			System.out.println(text + rating + rid + fpid);
-			Review r = new Review(text, Integer.parseInt(rating), Integer.parseInt(rid), Integer.parseInt(fpid), " ");
+			Review r = new Review(text, Integer.parseInt(rating), Integer.parseInt(rid), Integer.parseInt(fpid));
 			bmmd.addReview(r);
 		}
 	public void destroy() {

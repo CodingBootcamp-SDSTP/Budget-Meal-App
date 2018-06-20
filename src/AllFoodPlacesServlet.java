@@ -20,7 +20,8 @@ public class AllFoodPlacesServlet extends HttpServlet
 		sb = new StringBuffer("<FoodPlaces>");
 			for(int i=0; i<fpc.getFoodPlacesCount(); i++) {
 				FoodPlace fp = fpc.getFoodPlaceByIndex(i);
-				sb.append("<foodplace><name>" + fp.getName() + "</name>");
+				sb.append("<foodplace><photo>" + fp.getPhoto() + "</photo>");
+				sb.append("<name>" + fp.getName() + "</name>");
 				sb.append("<address>" + fp.getAddress() + "</address>");
 				sb.append("<menu>" + fp.getCheapestMenu() + "</menu>");
 				sb.append("<price>" + fp.getCheapestMenuPrice() + "</price></foodplace>");

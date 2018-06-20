@@ -6,14 +6,14 @@ public class Review
 	private int rating;
 	private int reviewerId;
 	private int foodPlaceId;
-	private String reviewDate;
+	// private Timestamp reviewDate;
 
-	public Review(String rt, int r, int rid, int fpid, String d) {
+	public Review(String rt, int r, int rid, int fpid) {
 		reviewText = rt;
 		rating = r;
 		reviewerId = rid;
 		foodPlaceId = fpid;
-		reviewDate = d;
+		// reviewDate = d;
 	}
 
 	public void setReviewText(String rt) {
@@ -48,11 +48,11 @@ public class Review
 		return(foodPlaceId);
 	}
 
-	public void setReviewDate(String date) {
-		reviewDate = date;
-	}
+	// public void setReviewDate(Timestamp date) {
+	// 	reviewDate = date;
+	// }
 
-	public String getReviewDate() {
-		return(reviewDate);
-	}
+	// public Timestamp getReviewDate() {
+	// 	return(reviewDate);
+	// }
 }

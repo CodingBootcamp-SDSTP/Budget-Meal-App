@@ -16,13 +16,14 @@ public class SearchFoodPlaceServlet extends HttpServlet
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/xml");
-		PrintWriter out = res.getWriter();
-		sb = new StringBuffer("<FoodPlaces>");
-		String[] query = req.getQueryString().split("&");
-		String[] amount = query[0].split("=");
-		String[] ff = query[1].split("=");
-		String[] loc = query[2].split("=");
+			res.setContentType("text/xml");
+			PrintWriter out = res.getWriter();
+			sb = new StringBuffer("<FoodPlaces>");
+			String[] query = req.getQueryString().split("&");
+			String[] amount = query[0].split("=");
+			String[] ff = query[1].split("=");
+			String[] loc = query[2].split("=");
+			String[] id = query[3].split("=");
 			ArrayList<Object> ao = bmmd.search(new BigDecimal(amount[1]), ff[1], loc[1], "");
 			for(int i=0; i<ao.size(); i++) {
 				Object obj = ao.get(i);

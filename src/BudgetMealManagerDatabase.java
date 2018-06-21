@@ -66,6 +66,95 @@ public class BudgetMealManagerDatabase
 		return(reviews);
 	}
 
+	public boolean checkCredentialsInSQL(String username, String password) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		boolean isExist = false;
+		try {
+			stmt = conn.prepareStatement("SELECT * FROM persons_tbl WHERE username=? AND password=?");
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
+			String user = "";
+			String pass = "";
+			while(rs.next()) {
+				user = rs.getString("username");
+				pass = rs.getString("password");
+			}
+			if(username.equalsIgnoreCase(user) && password.equalsIgnoreCase(pass)) {
+				isExist = true;
+			}
+			else {
+				isExist = false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			isExist = false;
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(isExist);
+	}
+
+	public String getUserType(String username) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String type = "";
+		try {
+			stmt = conn.prepareStatement("SELECT persontype from persons_tbl WHERE username=?");
+			stmt.setString(1, username);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				type = rs.getString("persontype");
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+			try { if(rs != null) rs.close(); } catch (Exception e) {};
+		}
+		return(type);
+	}
+
+	public String getPersonProfile(String username, String type) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		StringBuffer person = new StringBuffer("");
+		try {
+			stmt = conn.prepareStatement("SELECT * from persons_tbl WHERE username=?");
+			stmt.setString(1, username);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				person.append("<p><input type='text' class='person-id' value='" + rs.getInt("userid") + "' hidden=true ></p>");
+				person.append("<p><input type='text' class='person-fname' value='" + rs.getString("firstname") + "' disabled=true></p>");
+				person.append("<p><input type='text' class='person-lname' value='" + rs.getString("lastname") + "' disabled=true></p>");
+				person.append("<p><input type='text' class='person-age' value='" +rs.getInt("age") + "' disabled=true></p>");
+				person.append("<p><input type='text' class='person-location' value='" +rs.getString("location") + "' disabled=true></p>");
+				person.append("<p><input type='email' class='person-email' value='" +rs.getString("email") + "' disabled=true></p>");
+				person.append("<p><input type='text' class='person-username' value='" +rs.getString("username") + "' disabled=true></p>");
+				person.append("<p><input type='password' class='person-pw' value='" +rs.getString("password") + "' disabled=true></p>");
+				if("foodie".equals(type)) {
+					person.append("<p><input type='text' class='person-ff' value='" +rs.getString("favoritefood") + "' disabled=true></p>");
+				}
+				else {
+					person.append("<p><input type='text' class='person-mgr' value='" +rs.getString("establishmentname") + "' disabled=true></p>");
+				}
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+			try { if(rs != null) rs.close(); } catch (Exception e) {};
+		}
+		return(person.toString());
+	}
+
 	public boolean insertPersonToSQL(Person person) {
 		PreparedStatement stmt = null;
 		try {

@@ -24,7 +24,6 @@ public class AllReviewsServlet extends HttpServlet
 				sb.append("<rating>" + r.getRating() + "</rating>");
 				sb.append("<reviewerid>" + r.getReviewerId() + "</reviewerid>");
 				sb.append("<foodplaceid>" + r.getFoodPlaceId() + "</foodplaceid></review>");
-				// sb.append("<reviewdate>" + r.getReviewDate() + "</reviewdate>");
 			}
 		sb.append("</Reviews>");
 		out.print(sb.toString());

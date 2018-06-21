@@ -66,4 +66,36 @@
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ForwardToSignInPage</servlet-name>
+		<servlet-class>SignInPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardToSignInPage</servlet-name>
+		<url-pattern>/signin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ForwardToSignUpPage</servlet-name>
+		<servlet-class>SignUpPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardToSignUpPage</servlet-name>
+		<url-pattern>/createaccount</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ForwardToPostFoodPlacePage</servlet-name>
+		<servlet-class>AddFoodPlacePageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardToPostFoodPlacePage</servlet-name>
+		<url-pattern>/postfoodplace</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>ForwardToHowItWorksPage</servlet-name>
+		<servlet-class>HowItWorksPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardToHowItWorksPage</servlet-name>
+		<url-pattern>/howitworks</url-pattern>
+	</servlet-mapping>
 </web-app>

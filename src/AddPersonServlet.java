@@ -26,7 +26,6 @@ public class AddPersonServlet extends HttpServlet
 			String food = req.getParameter("food");
 			String place = req.getParameter("place");
 			String persontype = req.getParameter("usertype");
-			System.out.println(fname + lname + username + email);
 			if("foodie".equals(persontype)) {
 				Foodie f = new Foodie(fname, lname, Integer.parseInt(age), username, password, email, location, food);
 				bmmd.addPerson(f);

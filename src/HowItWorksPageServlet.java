@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.net.URI;
 import redis.clients.jedis.Jedis;
 
-public class LoginServlet extends HttpServlet
+public class HowItWorksPageServlet extends HttpServlet
 {
 	BudgetMealManagerDatabase bmmd;
 	StringBuffer sb;
@@ -15,18 +15,8 @@ public class LoginServlet extends HttpServlet
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			res.setContentType("text/html");
-			HttpSession session = req.getSession();
-			Jedis jedis = new Jedis("localhost");
-			PrintWriter out = res.getWriter();
-			String[] query = req.getQueryString().split("&");
-			String[] un = query[0].split("=");
-			String[] pw = query[1].split("=");
-			if(bmmd.checkCredentialsInSQL(un[1], pw[1])) {
-				jedis.set("sessionid", session.getId());
-			}
-			else {
-				out.write("login/password does not match!");
-			}
+			RequestDispatcher view = req.getRequestDispatcher("/howitworks.html");
+			view.forward(req, res);
 		}
 	public void destroy() {
 		bmmd = null;

@@ -200,3 +200,63 @@ footer {
 	margin-top: 100px;
 }
 
+/* REVIEW POPUP UI */
+.fullscreenpopup {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font-size: 16px;
+	background-color: rgba(0, 0, 0, 0.8);
+	font-family: 'Lato', sans-serif;
+}
+
+.fullscreenpopup_container {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.fullscreenpopup_content {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	background: rgba(189, 195, 199,0.2);
+	color: white;
+}
+
+.fullscreenpopup_content input,
+.fullscreenpopup_content select {
+	border: 2px solid #fffa65;
+	padding: 10px;
+	max-width: 100%;
+	background: #008080;
+	color: #fffa65;
+}
+
+.fullscreenpopup_content input::-webkit-input-placeholder {
+	color: #fffa65;
+}
+.fullscreenpopup_content input::-moz-placeholder {
+	color: #fffa65;
+}
+
+/* .fullscreenpopup_content .button {
+	border-radius: 8px;
+	padding: 10px;
+} */
+
+.fullscreenpopup_content p {
+	font-size: 24px;
+	color: #008080;
+}
+
+.fullscreenpopup_content span {
+	border: 2px solid #008080;
+	background: #fffa65;
+	color: #008080;
+	text-transform: lowercase;
+	padding: 10px 20px;
+	font-size: 14px;
+}

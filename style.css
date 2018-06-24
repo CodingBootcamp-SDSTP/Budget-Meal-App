@@ -11,6 +11,7 @@ body {
 	background: url("./src/img/meals.jpg") no-repeat;
 	background-size: cover;
 	color: #ff0000;
+	position: relative;
 }
 
 a:hover,
@@ -187,17 +188,37 @@ footer {
 }
 
 #foodplaces {
+	padding: 50px 20px 20px;
+	margin: 0 auto;
 	display: none;
+	flex-direction: column;
 }
 
 .fp {
-	background: rgba(255, 0, 0, 0.5);
-	padding: 30px 50px;
-	box-shadow: 0 3px 10px #000;
-	border: 3px solid #fff;
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+	align-items: center;
 	border-radius: 3px;
-	color: #FFFF66;
-	margin-top: 100px;
+	color: #f00;
+	background: rgba(0,0,0, 0.3);
+	border: 1px solid #ccc;
+	margin-top: 10px;
+}
+
+.fp .search-fp--name {
+	font-family: 'Shrikhand', cursive;
+}
+
+.fp p+p {
+	margin-top: 0;
+	padding-top: 0;
+	text-transform: lowercase
+}
+
+.fp button {
+	border-radius: 8px;
+	position: static;
 }
 
 /* REVIEW POPUP UI */
@@ -241,11 +262,6 @@ footer {
 .fullscreenpopup_content input::-moz-placeholder {
 	color: #fffa65;
 }
-
-/* .fullscreenpopup_content .button {
-	border-radius: 8px;
-	padding: 10px;
-} */
 
 .fullscreenpopup_content p {
 	font-size: 24px;

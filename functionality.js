@@ -11,19 +11,19 @@ function setEvents() {
 				rq.onreadystatechange = () => {
 				if(rq.readyState == 4) {
 					searchform.style.display = "none";
-					places.style.display = "block";
+					places.style.display = "flex";
 					let foodPlace = rq.responseText;
 					let parser = new DOMParser();
 					let xmlDoc = parser.parseFromString(foodPlace, "text/xml");
 					let foodPlaceTag = xmlDoc.getElementsByTagName("foodplace");
-					places.innerHTML = "";
+					places.innerHTML = "<h4>Good day young foodie! We have found " + foodPlaceTag.length + " great foodplaces near you! Enjoy your budget meal!</h4>";
 					for (let i=0; i<foodPlaceTag.length; i++) {
 						let photo = foodPlaceTag[i].childNodes[0].textContent;
 						let name = foodPlaceTag[i].childNodes[1].textContent;
 						let add = foodPlaceTag[i].childNodes[2].textContent;
 						let menu = foodPlaceTag[i].childNodes[3].textContent;
 						let price = foodPlaceTag[i].childNodes[4].textContent;
-						places.innerHTML += "<div class='fp'><div><img src=\""+photo+"\" alt=\""+name+" image\" width='300px' height='300px' id='fpphoto'></div><p>Name: " + name + "</p><p>Address: "+add+"</p><p> Menu: "+menu+"</p><p>Price: "+price+"</p><button id='review-btn' onclick='addReview();'>Write a review</button></div>";
+						places.insertAdjacentHTML('beforeend', "<div class='fp'></p><p class='search-fp--name'>" + name + "</p><p class='search-fp--add'>@"+add+"</p><p class='search-fp--menu'> Menu: "+menu+"</p><p class='search-fp--price'>Price: "+price+"</p><button id='review-btn' onclick='addReview();'>Write a review</button></div>");
 					}
 					
 				}
@@ -189,6 +189,8 @@ function addReview() {
 	cancelBtn.append(span2);
 	document.body.appendChild(popup);
 }
+
+
 
 window.onload = () => {
 	setEvents();

@@ -98,4 +98,12 @@
 		<servlet-name>ForwardToHowItWorksPage</servlet-name>
 		<url-pattern>/howitworks</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ForwardToHomePage</servlet-name>
+		<servlet-class>HomePageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForwardToHomePage</servlet-name>
+		<url-pattern>/search-place</url-pattern>
+	</servlet-mapping>
 </web-app>

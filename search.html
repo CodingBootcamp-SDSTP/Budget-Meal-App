@@ -12,25 +12,22 @@
 		<div class="brand"><a href="/budgetmealapp">BudgetMeal</a></div>
 		<nav>
 			<div><a href="/budgetmealapp/howitworks" class="howitworks" id="how">How It Works</a></div>
-			<div><a href="/budgetmealapp/signin" class="signin" id="signin">Sign In</a></div>
-			<div><a href="/budgetmealapp/createaccount" class="createaccount" id="create">Create Account</a></div>
-			<div><a href="/budgetmealapp/postfoodplace" class="postfood" id="post">Post A Food Place</a></div>
+			<div><a href="/budgetmealapp/" id="logout-btn">Sign Out</a></div>
 		</nav>
 	</header>
 	<div class="empty">
 		<!-- empty div to handle <main> tag positioning problem -->
 	</div>
 	<main>
-		<div class="landingpage home">
+		<div class="landingpage">
 				<div id="searchform">
 					<h1>Find the nearest food place that agrees with your budget.<br></h1>
-					<button type="submit" id="search-food-btn">Search for budget meal</button>
+					<input type="text" placeholder="(e.g., Amount)" id="budget">
+					<input type="text" placeholder="(e.g., Food)" id="food">
+					<input type="text" placeholder="(e.g., Location)" id="location">
+					<button type="submit" id="search-btn">Search</button>
 				</div>
 				<div id="foodplaces"></div>
-				<div id="postfoodform">
-					<h1>Post and introduce your affordable but simply one of the best menu you have!<br></h1>
-					<button type="submit" id="post-food-btn">Post my food place</button>
-				</div>
 		</div>
 	</main>
 	<div class="empty">

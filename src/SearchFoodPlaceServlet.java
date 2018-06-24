@@ -29,7 +29,7 @@ public class SearchFoodPlaceServlet extends HttpServlet
 				Object obj = ao.get(i);
 				if(obj instanceof FoodPlace) {
 					FoodPlace fp = (FoodPlace)obj;
-					sb.append("<foodplace><photo>" + fp.getPhoto() + "</photo>");
+					sb.append("<foodplace><id>" + bmmd.getFoodPlaceId(fp.getName()) + "</id>");
 					sb.append("<name>" + fp.getName() + "</name>");
 					sb.append("<address>" + fp.getAddress() + "</address>");
 					sb.append("<menu>" + fp.getCheapestMenu() + "</menu>");

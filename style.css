@@ -86,10 +86,6 @@ nav a:hover {
 	color: #ff0000;
 }
 
-#signout {
-	display: none;
-}
-
 main {
 	display: flex;
 	align-items: center;
@@ -140,6 +136,11 @@ main {
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
 	height: 50px;
+}
+
+main .home {
+	display: flex;
+	flex-direction: column;
 }
 
 footer {
@@ -206,9 +207,17 @@ footer {
 	margin-top: 10px;
 }
 
+#search-fp--title {
+	background: rgba(0,0,0, 0.3);
+	padding: 8px 15px;
+	border: 1px solid #ccc;
+}
+
 .fp .search-fp--name {
 	font-family: 'Shrikhand', cursive;
 }
+
+
 
 .fp p+p {
 	margin-top: 0;
@@ -230,7 +239,6 @@ footer {
 	right: 0;
 	font-size: 16px;
 	background-color: rgba(0, 0, 0, 0.8);
-	font-family: 'Lato', sans-serif;
 }
 
 .fullscreenpopup_container {
@@ -243,36 +251,33 @@ footer {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
-	background: rgba(189, 195, 199,0.2);
-	color: white;
+	color: #FFFF66;
+	font-family: 'Lato', sans-serif;
 }
 
 .fullscreenpopup_content input,
 .fullscreenpopup_content select {
-	border: 2px solid #fffa65;
 	padding: 10px;
+	width: 150px;
 	max-width: 100%;
-	background: #008080;
-	color: #fffa65;
+	color: #f00;
 }
 
-.fullscreenpopup_content input::-webkit-input-placeholder {
-	color: #fffa65;
-}
-.fullscreenpopup_content input::-moz-placeholder {
-	color: #fffa65;
-}
-
-.fullscreenpopup_content p {
-	font-size: 24px;
-	color: #008080;
+.fullscreenpopup_content button {
+	outline: none;
+	border: 1px solid #ff0000;
+	padding: 15px 30px;
+	background: #f00;
+	color: #ff6;
+	border-radius: 8px;
 }
 
-.fullscreenpopup_content span {
-	border: 2px solid #008080;
-	background: #fffa65;
-	color: #008080;
-	text-transform: lowercase;
+#cancel-btn {
+	text-decoration: none;
+	border: 1px solid #ff0000;
 	padding: 10px 20px;
-	font-size: 14px;
+	font-size: 0.85em;
+	border-radius: 8px;
+	background: #f00;
+	color: #ff6;
 }

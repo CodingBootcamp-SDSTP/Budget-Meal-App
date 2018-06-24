@@ -4,14 +4,16 @@ import javax.servlet.http.*;
 import java.net.URI;
 import redis.clients.jedis.Jedis;
 
-public class SignUpPageServlet extends HttpServlet
+public class HomePageServlet extends HttpServlet
 {
+	BudgetMealManagerDatabase bmmd;
+
 	public void init() throws ServletException {
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			res.setContentType("text/html");
-			RequestDispatcher view = req.getRequestDispatcher("/createaccount.html");
+			RequestDispatcher view = req.getRequestDispatcher("/search.html");
 			view.forward(req, res);
 		}
 	public void destroy() {

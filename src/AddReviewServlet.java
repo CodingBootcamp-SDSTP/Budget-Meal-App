@@ -22,6 +22,7 @@ public class AddReviewServlet extends HttpServlet
 			String rating = req.getParameter("rating");
 			String rid = req.getParameter("reviewer");
 			String fpid = req.getParameter("foodplace");
+			System.out.println(rid + " " + fpid);
 			Review r = new Review(text, Integer.parseInt(rating), Integer.parseInt(rid), Integer.parseInt(fpid));
 			bmmd.addReview(r);
 		}

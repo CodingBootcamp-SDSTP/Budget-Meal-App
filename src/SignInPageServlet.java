@@ -7,7 +7,6 @@ import redis.clients.jedis.Jedis;
 public class SignInPageServlet extends HttpServlet
 {
 	BudgetMealManagerDatabase bmmd;
-	StringBuffer sb;
 
 	public void init() throws ServletException {
 		bmmd = BudgetMealManagerDatabase.instance();

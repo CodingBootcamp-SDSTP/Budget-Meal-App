@@ -98,16 +98,16 @@ public class BudgetMealManagerDatabase
 		return(isExist);
 	}
 
-	public String getUserType(String username) {
+	public int getUserId(String username) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String type = "";
+		int userid = 0;
 		try {
-			stmt = conn.prepareStatement("SELECT persontype from persons_tbl WHERE username=?");
+			stmt = conn.prepareStatement("SELECT userid from persons_tbl WHERE username=?");
 			stmt.setString(1, username);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
-				type = rs.getString("persontype");
+				userid = rs.getInt("userid");
 			}
 		}
 		catch(Exception e) {
@@ -117,7 +117,51 @@ public class BudgetMealManagerDatabase
 			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
 			try { if(rs != null) rs.close(); } catch (Exception e) {};
 		}
-		return(type);
+		return(userid);
+	}
+
+	public String getUserType(String username) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String pt = "";
+		try {
+			stmt = conn.prepareStatement("SELECT persontype from persons_tbl WHERE username=?");
+			stmt.setString(1, username);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				pt = rs.getString("persontype");
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+			try { if(rs != null) rs.close(); } catch (Exception e) {};
+		}
+		return(pt);
+	}
+
+	public int getFoodPlaceId(String foodPlaceName) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int fpid = 0;
+		try {
+			stmt = conn.prepareStatement("SELECT fpid from foodplaces_tbl WHERE fpname=?");
+			stmt.setString(1, foodPlaceName);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				fpid = rs.getInt("fpid");
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+			try { if(rs != null) rs.close(); } catch (Exception e) {};
+		}
+		return(fpid);
 	}
 
 	public String getPersonProfile(String username, String type) {

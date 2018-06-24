@@ -1,4 +1,6 @@
 var session = "";
+var userid = 0;
+var foodplaceid = 0;
 function setEvents() {
 	let rq = new XMLHttpRequest();
 	let places = document.getElementById("foodplaces");
@@ -16,9 +18,14 @@ function setEvents() {
 					let parser = new DOMParser();
 					let xmlDoc = parser.parseFromString(foodPlace, "text/xml");
 					let foodPlaceTag = xmlDoc.getElementsByTagName("foodplace");
-					places.innerHTML = "<h4>Good day young foodie! We have found " + foodPlaceTag.length + " great foodplaces near you! Enjoy your budget meal!</h4>";
+					if(foodPlaceTag.length != 0 ) {
+						places.innerHTML = "<h4 id='search-fp--title'>Good day young foodie! We have found " + foodPlaceTag.length + " great foodplace/s near you! Enjoy your budget meal!</h4>";
+					}
+					else {
+						places.innerHTML = "<h4 id='search-fp--title'>Good day young foodie! The queries you entered does not have any match from our records. Please try with more specific queries next time. Happy to serve!</h4>";
+					}
 					for (let i=0; i<foodPlaceTag.length; i++) {
-						let photo = foodPlaceTag[i].childNodes[0].textContent;
+						foodplaceid = foodPlaceTag[i].childNodes[0].textContent;
 						let name = foodPlaceTag[i].childNodes[1].textContent;
 						let add = foodPlaceTag[i].childNodes[2].textContent;
 						let menu = foodPlaceTag[i].childNodes[3].textContent;
@@ -60,7 +67,7 @@ function setEvents() {
 			let user = document.getElementById("usertype").value;
 			rq.onreadystatechange = () => {
 				if(rq.readyState == 4) {
-					alert("new Person added");
+					location.href = "/budgetmealapp/login";
 				}
 			};
 			rq.open("POST", "/budgetmealapp/addperson?id="+session, true);
@@ -74,19 +81,29 @@ function setEvents() {
 			rq.onreadystatechange = () => {
 				if(rq.readyState == 4) {
 					session = rq.responseText;
-					localStorage.setItem("sessionid", session);
+					let jsession = JSON.parse(session);
+					if(session.includes("not match")) {
+						document.getElementById("login-error").innerHTML = "<small>"+session+"</small>";ssss
+					}
+					else {
+						localStorage.setItem("sessionid", jsession[0].sessionid);
+						localStorage.setItem("userid", jsession[0].userid);
+						userid = jsession[0].userid;
+						if(jsession[0].usertype == "foodie") {
+							location.href="/budgetmealapp/search-place";
+						}
+						else if(jsession[0].usertype == "manager") {
+							location.href="/budgetmealapp/postfoodplace";
+						}
+					}
 				}
 			};
 			rq.open("GET", "/budgetmealapp/login?username="+un+"&password="+pass, true);
 			rq.setRequestHeader("Content-Type", "text/html");
 			rq.send();
 		}
-		else if(e.target && e.target.matches("button#review-btn")) {
-			
-		}
-		else if(e.target && e.target.matches("button#logout-btn")) {
+		else if(e.target && e.target.matches("a#logout-btn")) {
 			localStorage.clear();
-			location.href = "/budgetmealapp";
 		}
 	});
 }
@@ -108,6 +125,9 @@ function addReview() {
 	let input_text = document.createElement('textarea');
 	input_text.setAttribute('placeholder', 'Type your review');
 	input_text.setAttribute('id', 'review-text');
+	input_text.setAttribute('cols', '60');
+	input_text.setAttribute('rows', '15');
+	input_text.setAttribute('wrap', 'on');
 	review_txt.appendChild(input_text);
 	content.appendChild(review_txt);
 	//review rating
@@ -118,20 +138,20 @@ function addReview() {
 	rating_option.value = "";
 	rating_option.text = "Select Rating";
 	let one_option = document.createElement('option');
-	rating_option.value = "1";
-	rating_option.text = "1";
+	one_option.value = "1";
+	one_option.text = "1";
 	let two_option = document.createElement('option');
-	rating_option.value = "2";
-	rating_option.text = "2";
+	two_option.value = "2";
+	two_option.text = "2";
 	let three_option = document.createElement('option');
-	rating_option.value = "3";
-	rating_option.text = "3";
+	three_option.value = "3";
+	three_option.text = "3";
 	let four_option = document.createElement('option');
-	rating_option.value = "4";
-	rating_option.text = "4";
+	four_option.value = "4";
+	four_option.text = "4";
 	let five_option = document.createElement('option');
-	rating_option.value = "5";
-	rating_option.text = "5";
+	five_option.value = "5";
+	five_option.text = "5";
 	select_type.add(rating_option, null);
 	select_type.add(one_option, null);
 	select_type.add(two_option, null);
@@ -143,7 +163,6 @@ function addReview() {
 	//reviewerid
 	let input_rid = document.createElement('input');
 	input_rid.setAttribute('type', 'text');
-	input_rid.value = 
 	input_rid.setAttribute('hidden', true);
 	input_rid.setAttribute('id', 'reviewer-id');
 	content.appendChild(input_rid);
@@ -155,38 +174,36 @@ function addReview() {
 	content.appendChild(input_fid);
 	let p2 = document.createElement('p');
 	content.appendChild(p2);
-	let button = document.createElement('a');
-	button.href = '#';
-	button.className = 'button';
+	let button = document.createElement('button');
+	button.setAttribute('id', 'addreview-btn');
+	button.appendChild(document.createTextNode('Post'));
 	button.onclick = () => {
+		let text = document.getElementById("review-text").value;
+		let rating = document.getElementById("review-rating").value;
 		let rq = new XMLHttpRequest();
 		rq.onreadystatechange = () => {
 			if(rq.readyState == 4) {
 				console.log("Review Success!");
+				console.log(userid);
+				console.log(foodplaceid);
 			}
 		};
-		rq.open("POST", "/addreview", true);
+		rq.open("POST", "/budgetmealapp/addreview", true);
 		rq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		rq.send();
+		rq.send("text="+text+"&rating="+rating+"&foodplace="+foodplaceid+"&reviewer="+userid);
 		document.body.removeChild(popup);
 	}
 	p2.appendChild(button);
-	let span = document.createElement('span');
-	span.appendChild(document.createTextNode("Add Review"));
-	button.appendChild(span);
 	//cancelbutton
 	let p_cancel = document.createElement('p');
 	content.appendChild(p_cancel);
-	let cancelBtn = document.createElement('a');
-	cancelBtn.href = '#';
-	cancelBtn.className = 'cancel-btn';
+	let cancelBtn = document.createElement('button');
+	cancelBtn.setAttribute('id', 'cancel-btn');
 	cancelBtn.onclick = () => {
 		document.body.removeChild(popup);
 	}
+	cancelBtn.appendChild(document.createTextNode('Cancel'));
 	p_cancel.append(cancelBtn);
-	let span2 = document.createElement('span');
-	span2.appendChild(document.createTextNode("Cancel"));
-	cancelBtn.append(span2);
 	document.body.appendChild(popup);
 }
 

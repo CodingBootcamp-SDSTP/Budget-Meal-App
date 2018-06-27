@@ -15,7 +15,8 @@ public class HomePageServlet extends HttpServlet
 			res.setContentType("text/html");
 			RequestDispatcher view = req.getRequestDispatcher("/search.html");
 			view.forward(req, res);
-		}
+	}
+	
 	public void destroy() {
 	}
 }

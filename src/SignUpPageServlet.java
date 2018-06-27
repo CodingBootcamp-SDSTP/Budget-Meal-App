@@ -13,7 +13,8 @@ public class SignUpPageServlet extends HttpServlet
 			res.setContentType("text/html");
 			RequestDispatcher view = req.getRequestDispatcher("/createaccount.html");
 			view.forward(req, res);
-		}
+	}
+	
 	public void destroy() {
 	}
 }

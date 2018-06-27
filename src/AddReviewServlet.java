@@ -25,7 +25,8 @@ public class AddReviewServlet extends HttpServlet
 			System.out.println(rid + " " + fpid);
 			Review r = new Review(text, Integer.parseInt(rating), Integer.parseInt(rid), Integer.parseInt(fpid));
 			bmmd.addReview(r);
-		}
+	}
+	
 	public void destroy() {
 		bmmd = null;
 	}

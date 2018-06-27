@@ -17,7 +17,8 @@ public class AddFoodPlacePageServlet extends HttpServlet
 			res.setContentType("text/html");
 			RequestDispatcher view = req.getRequestDispatcher("/postyourfoodplace.html");
 			view.forward(req, res);
-		}
+	}
+	
 	public void destroy() {
 		bmmd = null;
 	}

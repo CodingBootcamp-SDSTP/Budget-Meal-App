@@ -16,7 +16,8 @@ public class SignInPageServlet extends HttpServlet
 			res.setContentType("text/html");
 			RequestDispatcher view = req.getRequestDispatcher("/login.html");
 			view.forward(req, res);
-		}
+	}
+	
 	public void destroy() {
 		bmmd = null;
 	}

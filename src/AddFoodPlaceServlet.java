@@ -23,7 +23,8 @@ public class AddFoodPlaceServlet extends HttpServlet
 			String photo = req.getParameter("fpphoto");
 			FoodPlace fp = new FoodPlace(name, address, menu, new BigDecimal(price), photo);
 			bmmd.addFoodPlace(fp);
-		}
+	}
+	
 	public void destroy() {
 		bmmd = null;
 	}

@@ -17,7 +17,8 @@ public class HowItWorksPageServlet extends HttpServlet
 			res.setContentType("text/html");
 			RequestDispatcher view = req.getRequestDispatcher("/howitworks.html");
 			view.forward(req, res);
-		}
+	}
+	
 	public void destroy() {
 		bmmd = null;
 	}
